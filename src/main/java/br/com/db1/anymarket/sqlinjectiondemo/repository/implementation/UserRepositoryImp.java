@@ -7,23 +7,23 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public class UserRepositoryImp implements UserRepository {
-    private static final String FIND_USER_BY_USERNAME_PASSWORD = """
-    select id, username, name, surname
-    from users u
-    where u.username = %s
-    and u.password = %s
-    """;
+    private static final String FIND_USER_BY_USERNAME_PASSWORD = "select id, username, password, name, surname " +
+    "from users u " +
+    "where u.username = '%s' " +
+    "and u.password = '%s'";
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    public User getUser(String username, String password) {
+    public Optional<User> getUser(String username, String password) {
 
         Query query = entityManager.createNativeQuery(FIND_USER_BY_USERNAME_PASSWORD.formatted(username, password), User.class);
 
-        return (User) query.getSingleResult();
+        return Optional.of((User) query.getSingleResult());
     }
 }

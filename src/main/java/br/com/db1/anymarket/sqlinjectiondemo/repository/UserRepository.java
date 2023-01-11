@@ -2,7 +2,9 @@ package br.com.db1.anymarket.sqlinjectiondemo.repository;
 
 import br.com.db1.anymarket.sqlinjectiondemo.model.User;
 
+import java.util.Optional;
+
 public interface UserRepository {
 
-    User getUser(String username, String password);
+    Optional<User> getUser(String username, String password);
 }

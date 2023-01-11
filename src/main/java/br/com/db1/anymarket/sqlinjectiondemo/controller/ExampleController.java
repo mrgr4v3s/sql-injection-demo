@@ -1,10 +1,11 @@
 package br.com.db1.anymarket.sqlinjectiondemo.controller;
 
-import br.com.db1.anymarket.sqlinjectiondemo.model.User;
 import br.com.db1.anymarket.sqlinjectiondemo.model.UserRequest;
+import br.com.db1.anymarket.sqlinjectiondemo.model.UserResponse;
 import br.com.db1.anymarket.sqlinjectiondemo.service.AuthenticationService;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +20,9 @@ public class ExampleController {
     }
 
     @PostMapping("/authenticate")
-    public User authenticate(UserRequest user) {
+    public ResponseEntity<UserResponse> authenticate(@RequestBody UserRequest user) {
 
-        return authenticationService.doAuthentication(user);
+        return ResponseEntity.ok()
+                .body(authenticationService.doAuthentication(user));
     }
 }

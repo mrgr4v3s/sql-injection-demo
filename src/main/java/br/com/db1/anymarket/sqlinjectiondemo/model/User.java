@@ -17,6 +17,7 @@ public class User {
     @NotNull
     private String username;
 
+    @NotNull
     private String password;
 
     @NotNull
@@ -25,20 +26,7 @@ public class User {
     @NotNull
     private String surname;
 
-    public User(BigInteger id, String username, String password, String name, String surname) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-    }
-
     public User() {
-    }
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
     }
 
     public String getUsername() {
