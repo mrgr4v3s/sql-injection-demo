@@ -1,4 +1,4 @@
-package br.com.db1.anymarket.sqlinjectiondemo.model;
+package br.com.db1.anymarket.sqlinjectiondemo.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -25,6 +25,9 @@ public class User {
 
     @NotNull
     private String surname;
+
+    @NotNull
+    private String token;
 
     public User() {
     }
@@ -67,5 +70,13 @@ public class User {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

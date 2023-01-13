@@ -7,6 +7,7 @@ CREATE TABLE injection.users
     password character varying COLLATE pg_catalog."default" NOT NULL,
     name character varying COLLATE pg_catalog."default",
     surname character varying COLLATE pg_catalog."default",
+    token character varying COLLATE pg_catalog."default",
     CONSTRAINT users_pkey PRIMARY KEY (id)
 )
 
