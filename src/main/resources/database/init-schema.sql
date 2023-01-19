@@ -1,3 +1,5 @@
+
+
 DROP TABLE IF EXISTS injection.users CASCADE;
 
 CREATE TABLE injection.users
@@ -8,6 +10,7 @@ CREATE TABLE injection.users
     name character varying COLLATE pg_catalog."default",
     surname character varying COLLATE pg_catalog."default",
     token character varying COLLATE pg_catalog."default",
+    role character varying COLLATE pg_catalog."default",
     CONSTRAINT users_pkey PRIMARY KEY (id)
 )
 

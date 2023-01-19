@@ -7,6 +7,7 @@ import br.com.db1.anymarket.sqlinjectiondemo.model.entity.User;
 import br.com.db1.anymarket.sqlinjectiondemo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,7 @@ public class AuthenticationService {
 
         return authenticatedUser.map(user -> new UserResponse(
                 user.getId(),
+                user.getUsername(),
                 user.getName(),
                 user.getSurname(),
                 user.getToken())
@@ -36,4 +38,20 @@ public class AuthenticationService {
         return new TokenValidResponse(tokenUser.isPresent());
     }
 
+    public List<UserResponse> getUsers(String filter) {
+        Optional<List<User>> queryResult = userRepository.findUsersInOrder(filter);
+
+        if (queryResult.isEmpty())
+            return List.of();
+
+        List<User> users = queryResult.get();
+
+        return users.stream().map(user -> new UserResponse(
+                user.getId(),
+                user.getUsername(),
+                user.getName(),
+                user.getSurname(),
+                user.getToken()
+        )).toList();
+    }
 }

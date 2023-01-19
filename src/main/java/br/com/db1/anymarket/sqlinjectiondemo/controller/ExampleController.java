@@ -7,6 +7,8 @@ import br.com.db1.anymarket.sqlinjectiondemo.service.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/example")
 public class ExampleController {
@@ -21,6 +23,11 @@ public class ExampleController {
     public ResponseEntity<UserResponse> authenticate(@RequestBody UserRequest user) {
         return ResponseEntity.ok()
                 .body(authenticationService.doAuthentication(user));
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<UserResponse>> getUsers(@RequestParam String filter) {
+        return ResponseEntity.ok(authenticationService.getUsers(filter));
     }
 
     @GetMapping("/token")
